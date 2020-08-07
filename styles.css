@@ -37,6 +37,7 @@ td {
 th,
 td {
   padding: 10px;
+  text-align: left;
 }
 th {
   text-align: left;
@@ -111,4 +112,9 @@ a {
 }
 a:hover {
   cursor: pointer;
+}
+
+#error {
+  color: red;
+  display: none;
 }
