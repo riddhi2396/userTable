@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Table</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="root">
+      <div class="container">
+        <div class="searchBar">
+          <input id="myInput" onkeyup="searchByName()" type="text" placeholder="search by name" />
+        </div>
+        <div class="addUserBtn">
+          <button id="myBtn" onclick="openForm()">Add New User</button>
+        </div>
+        <div class="dataContainer">
+          <table id='table' style="width: 50%;">
+            <tr>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>Age</th>
+              <th>Interests</th>
+              <th>Place</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p id='title'></p>
+          <form id="form" onsubmit="event.preventDefault(); submitForm();" autocomplete="off">
+            <label class="labels">Name:</label><br>
+            <input type="text" id="name" placeholder="Enter Name"/> <br>
+            <label>Date of birth</label><br>
+            <input type="text" id="dob" placeholder="DD/MM/YYYY"/> <br>
+            <label>Place:</label><br>
+            <input type="text" id="city" placeholder="Enter your city"/> <br>
+            <label>Interested:</label><br>
+            <input type="text" id="interest" placeholder="travelling..."/> <br>
+
+            <input id="button" type="submit" value="Submit"/>
+           
+          </form>
+        </div>
+    <script src="main.js"></script>
+  </body>
+</html>
