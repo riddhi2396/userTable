@@ -2,6 +2,7 @@ var selectedRow = null;
 let users = [];
 
 window.onload = showUserTable();
+
 // search by name
 function searchByName() {
   var input, filter, table, tr, td, value;
@@ -54,11 +55,13 @@ function closeForm() {
   reset();
 }
 
+// shows error
 function showError() {
   let error = document.getElementById("error");
   error.style.display = "block";
 }
 
+// hide errors
 function hideError() {
   let error = document.getElementById("error");
   error.style.display = "none";
@@ -92,12 +95,14 @@ function readFormData() {
   users.push(data);
   localStorage.setItem("userTable", JSON.stringify(users));
 }
+
+// checks date formate
 function dateFormat() {
-  let value1 = document.getElementById("dob").value;
+  let date = document.getElementById("dob").value;
   var pattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
 
-  if (pattern.test(value1)) {
-    if (dateValidation(value1)) {
+  if (pattern.test(date)) {
+    if (dateValidation(date)) {
       return true;
     } else {
       return false;
@@ -107,6 +112,7 @@ function dateFormat() {
   }
 }
 
+// validate Date
 function dateValidation(date) {
   let split_dob = date.split("/");
   var day = split_dob[0];
@@ -117,13 +123,6 @@ function dateValidation(date) {
 
   let flag = 0;
   var today = new Date();
-  console.log(
-    "today's date is ",
-    today.getDay(),
-    today.getMonth(),
-    today.getFullYear()
-  );
-  console.log("date entered is ", day, month, year);
 
   if (today.getFullYear() > year) {
     flag = 1;
@@ -174,59 +173,10 @@ function calculateAge(date) {
 
     return Math.floor((new Date() - new Date(newDate).getTime()) / 3.15576e10);
   } else {
-    // alert("Please enter valid date");
   }
-  //   let split_dob = date.split("/");
-  //   var day = split_dob[0];
-  //   var month = split_dob[1];
-  //   var year = split_dob[2];
-
-  //   var today = new Date();
-
-  //   if (
-  //     today.getFullYear <= year &&
-  //     today.getMonth <= month &&
-  //     today.getDay <= day
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-
-  //   normal_year = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  //   leap_year = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-  //   if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-  //     if (month <= 12) {
-  //       if (day <= leap_year[month - 1]) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     } else {
-  //       return false;
-  //     }
-  //   } else {
-  //     if (month <= 12) {
-  //       if (day <= normal_year[month - 1]) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     } else {
-  //       return false;
-  //     }
-  //   }
-
-  //   var dob_asdate = new Date(year, month, day);
-  //   var mili_dif = Math.abs(today.getTime() - dob_asdate.getTime());
-  //   var age = mili_dif / (1000 * 3600 * 24 * 365.25);
-  //   within_age_range = (14 < age) & (age < 24);
-
-  //   return Math.round(age) + " " + "years";
 }
 
-// Add new user to table
+// shows new user to table
 function showUserTable() {
   getData();
   var table = document.getElementById("table");
@@ -269,7 +219,6 @@ function reset() {
 // open a form with edited user info
 function editUser(td) {
   selectedRow = td.parentElement.parentElement;
-  console.log(selectedRow.rowIndex);
   document.getElementById("name").value = selectedRow.cells[0].innerHTML;
   document.getElementById("dob").value = selectedRow.cells[1].innerHTML;
   document.getElementById("city").value = selectedRow.cells[4].innerHTML;
