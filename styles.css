@@ -42,6 +42,11 @@ td {
 th {
   text-align: left;
 }
+
+tr:hover {
+  font-size: 14px;
+  font-weight: 900;
+}
 .modal {
   display: none;
   position: fixed;
